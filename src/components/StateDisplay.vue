@@ -1,11 +1,17 @@
 <template>
   <div>
-    Hello everyone
-    {{ state }}
+    <state-entry
+      v-for="(entryValue, entryName) in state"
+      key="entryName"
+      :name="entryName"
+      :value="entryValue"
+    />
   </div>
 </template>
 
 <script>
+import StateEntry from '@/components/StateEntry'
+
 export default {
   name: 'state-display',
   props: {
@@ -13,6 +19,9 @@ export default {
       required: true,
       type: Object
     }
+  },
+  components: {
+    'state-entry': StateEntry
   }
 }
 </script>
