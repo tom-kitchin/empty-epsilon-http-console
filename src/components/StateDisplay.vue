@@ -1,6 +1,6 @@
 <template>
   <div>
-    Hello
+    Hello everyone
     {{ state }}
   </div>
 </template>
