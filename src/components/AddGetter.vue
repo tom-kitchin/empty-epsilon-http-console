@@ -7,7 +7,6 @@
 
 <script>
 export default {
-  name: 'add-getter',
   data () {
     return {
       name: undefined

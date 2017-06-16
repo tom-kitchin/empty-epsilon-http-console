@@ -6,20 +6,18 @@
 
 <script>
 export default {
-  name: 'getter',
   props: {
-    name: {
-      required: true,
-      type: String
-    },
     getter: {
       required: true,
       type: Object
     }
   },
   computed: {
+    name () {
+      return this.getter.name
+    },
     value () {
-      return this.getter
+      return this.getter.value
     }
   }
 }

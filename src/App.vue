@@ -1,12 +1,16 @@
 <template>
   <div id="app">
     <h1>GM Console</h1>
-    <state-display :initialState="state" />
+    <server-connection />
+    <div v-if="serverIsLive">
+      <getters />
+    </div>
   </div>
 </template>
 
 <script>
-import StateDisplay from './components/StateDisplay.vue'
+import ServerConnection from './components/ServerConnection'
+import Getters from './components/Getters'
 
 export default {
   name: 'app',
@@ -17,26 +21,14 @@ export default {
       default: {}
     }
   },
-  data () {
-    return {
-      state: {
-        ship: {
-          getters: {
-            hullStrength: 50,
-            torpedoes: 5,
-            engineeringOccupied: true,
-            gameState: 'mainBattle'
-          },
-          actions: {
-            'launchFighters': '',
-            'winGame': ''
-          }
-        }
-      }
+  computed: {
+    serverIsLive () {
+      return true
     }
   },
   components: {
-    StateDisplay
+    ServerConnection,
+    Getters
   }
 }
 </script>
