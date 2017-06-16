@@ -1,16 +1,17 @@
 <template>
   <div>
-    <state-entry
+    <game-object
       v-for="(entryValue, entryName) in state"
       key="entryName"
       :name="entryName"
-      :value="entryValue"
+      :actions="entryValue.actions"
+      :getters="entryValue.getters"
     />
   </div>
 </template>
 
 <script>
-import StateEntry from '@/components/StateEntry'
+import GameObject from '@/components/GameObject'
 
 export default {
   name: 'state-display',
@@ -21,7 +22,7 @@ export default {
     }
   },
   components: {
-    'state-entry': StateEntry
+    'game-object': GameObject
   }
 }
 </script>

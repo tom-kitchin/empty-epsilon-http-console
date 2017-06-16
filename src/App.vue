@@ -20,10 +20,18 @@ export default {
   data () {
     return {
       state: {
-        hullStrength: 50,
-        torpedoes: 5,
-        engineeringOccupied: true,
-        gameState: 'mainBattle'
+        ship: {
+          getters: {
+            hullStrength: 50,
+            torpedoes: 5,
+            engineeringOccupied: true,
+            gameState: 'mainBattle'
+          },
+          actions: [
+            'launchFighters',
+            'winGame'
+          ]
+        }
       }
     }
   },
