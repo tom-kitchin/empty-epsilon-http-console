@@ -6,7 +6,7 @@
       key="getter.id"
       :getter="getter"
     />
-    <add-getter @addGetter="addGetter" />
+    <add-getter />
   </div>
 </template>
 
@@ -18,11 +18,6 @@ export default {
   computed: {
     getters () {
       return this.$store.getters.getters
-    }
-  },
-  methods: {
-    addGetter (name) {
-      this.$store.dispatch('addGetter', { name })
     }
   },
   components: {

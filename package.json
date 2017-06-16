@@ -13,6 +13,8 @@
   "dependencies": {
     "compression-webpack-plugin": "^0.4.0",
     "lodash": "^4.17.4",
+    "request": "^2.81.0",
+    "request-promise-native": "^1.0.4",
     "vue": "^2.3.3",
     "vuex": "^2.3.1",
     "vuex-persistedstate": "^1.4.1"

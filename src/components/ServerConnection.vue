@@ -13,11 +13,14 @@
 </template>
 
 <script>
+import eclipseServer from '@/services/eclipse-server'
+
 export default {
   data () {
     return {
       editing: !!this.serverAddress,
-      tempServerAddress: this.serverAddress
+      tempServerAddress: this.serverAddress,
+      serverCheckPromise: undefined
     }
   },
   computed: {
@@ -28,12 +31,30 @@ export default {
       set (value) {
         this.tempServerAddress = value
       }
+    },
+    getters () {
+      return this.$store.getters.getters
     }
   },
   methods: {
     saveServerAddress () {
       this.$store.dispatch('setEclipseServerAddress', this.tempServerAddress)
       this.editing = false
+    },
+    startCheckingServer () {
+      if (!this.serverAddress) { return }
+      this.serverCheckPromise = eclipseServer.queryServer(this.serverAddress, this.getters).then((results) => {
+        this.$store.dispatch('setGetterValues', results)
+      }).then(() => {
+        setTimeout(this.startCheckingServer, 500)
+      })
+    }
+  },
+  watch: {
+    serverAddress (newValue, oldValue) {
+      if (!oldValue && newValue) {
+        this.startCheckingServer()
+      }
     }
   }
 }

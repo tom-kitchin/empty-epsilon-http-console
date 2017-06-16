@@ -1,6 +1,7 @@
 <template>
   <div>
-    <input v-model="name" placeholder="new getter" />
+    <input v-model="name" placeholder="Name the status!" />
+    <input v-model="method" placeholder="What method should be called?" />
     <a class="button" @click="addGetter">+</a>
   </div>
 </template>
@@ -9,14 +10,18 @@
 export default {
   data () {
     return {
-      name: undefined
+      name: undefined,
+      method: undefined
     }
   },
   methods: {
     addGetter () {
-      if (this.name) {
-        this.$emit('addGetter', this.name)
+      if (this.name && this.method) {
+        this.$store.dispatch('addGetter', {
+          name: this.name, method: this.method
+        })
         this.name = ''
+        this.method = ''
       }
     }
   }
