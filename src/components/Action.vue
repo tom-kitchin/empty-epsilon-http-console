@@ -11,6 +11,10 @@ export default {
     name: {
       required: true,
       type: String
+    },
+    action: {
+      required: true,
+      type: Object
     }
   }
 }

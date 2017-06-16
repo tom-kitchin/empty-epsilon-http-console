@@ -1,7 +1,7 @@
 <template>
   <div>
     <input v-model="name" placeholder="new getter" />
-    <a @click="addGetter">+</a>
+    <a class="button" @click="addGetter">+</a>
   </div>
 </template>
 
@@ -17,8 +17,15 @@ export default {
     addGetter () {
       if (this.name) {
         this.$emit('addGetter', this.name)
+        this.name = ''
       }
     }
   }
 }
 </script>
+
+<style>
+.button {
+  cursor: pointer;
+}
+</style>

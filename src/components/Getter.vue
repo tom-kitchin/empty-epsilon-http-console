@@ -6,14 +6,20 @@
 
 <script>
 export default {
-  name: 'state-entry',
+  name: 'getter',
   props: {
     name: {
       required: true,
       type: String
     },
-    value: {
-      required: false
+    getter: {
+      required: true,
+      type: Object
+    }
+  },
+  computed: {
+    value () {
+      return this.getter
     }
   }
 }

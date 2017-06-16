@@ -7,16 +7,17 @@
         v-for="(getterValue, getterName) in getters"
         key="getterName"
         :name="getterName"
-        :value="getterValue"
+        :getter="getterValue"
       />
-      <add-getter />
+      <add-getter @addGetter="addGetterToGameObject" />
     </div>
     <h3>Actions</h3>
     <div>
       <action
-        v-for="actionName in actions"
+        v-for="(actionValue, actionName) in actions"
         key="actionName"
         :name="actionName"
+        :action="actionValue"
       />
     </div>
   </div>
@@ -34,21 +35,42 @@ export default {
       required: true,
       type: String
     },
+    initialGameObject: {
+      required: false,
+      default: {},
+      type: Object
+    }
+  },
+  data () {
+    return {
+      gameObject: this.initialGameObject
+    }
+  },
+  computed: {
     getters: {
-      required: false,
-      type: Object,
-      default: {}
+      get () {
+        return this.gameObject.getters
+      },
+      set (value) {
+        this.gameObject.getters = value
+      }
     },
-    actions: {
-      required: false,
-      type: Array,
-      default: {}
+    actions () {
+      return this.gameObject.actions
+    }
+  },
+  methods: {
+    addGetterToGameObject (name) {
+      this.getters = {
+        ...this.getters,
+        [name]: ''
+      }
     }
   },
   components: {
-    'getter': Getter,
-    'action': Action,
-    'add-getter': AddGetter
+    Getter,
+    Action,
+    AddGetter
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h1>GM Console</h1>
-    <state-display :state="state" />
+    <state-display :initialState="state" />
   </div>
 </template>
 
@@ -27,10 +27,10 @@ export default {
             engineeringOccupied: true,
             gameState: 'mainBattle'
           },
-          actions: [
-            'launchFighters',
-            'winGame'
-          ]
+          actions: {
+            'launchFighters': '',
+            'winGame': ''
+          }
         }
       }
     }
