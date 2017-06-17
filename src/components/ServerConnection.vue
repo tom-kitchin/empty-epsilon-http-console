@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import eclipseServer from '@/services/eclipse-server'
+import { epsilonGet } from '@/services/epsilon-server'
 
 export default {
   data () {
@@ -26,7 +26,7 @@ export default {
   computed: {
     serverAddress: {
       get () {
-        return this.$store.getters.eclipseServerAddress
+        return this.$store.getters.epsilonServerAddress
       },
       set (value) {
         this.tempServerAddress = value
@@ -38,24 +38,24 @@ export default {
   },
   methods: {
     saveServerAddress () {
-      this.$store.dispatch('setEclipseServerAddress', this.tempServerAddress)
+      this.$store.dispatch('setEpsilonServerAddress', this.tempServerAddress)
       this.editing = false
     },
     startCheckingServer () {
       if (!this.serverAddress) { return }
-      this.serverCheckPromise = eclipseServer.queryServer(this.serverAddress, this.getters).then((results) => {
+      this.serverCheckPromise = epsilonGet(this.serverAddress, this.getters).then((results) => {
+        console.log(['server check results', results])
         this.$store.dispatch('setGetterValues', results)
       }).then(() => {
         setTimeout(this.startCheckingServer, 500)
+      }).catch((error) => {
+        console.log(['Error in ServerConnection', error])
+        setTimeout(this.startCheckingServer, 10000)
       })
     }
   },
-  watch: {
-    serverAddress (newValue, oldValue) {
-      if (!oldValue && newValue) {
-        this.startCheckingServer()
-      }
-    }
+  mounted () {
+    this.startCheckingServer()
   }
 }
 </script>

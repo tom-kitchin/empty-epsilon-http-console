@@ -1,5 +1,5 @@
-export function eclipseServerAddress (state) {
-  return state.eclipseServerAddress
+export function epsilonServerAddress (state) {
+  return state.epsilonServerAddress
 }
 
 export function getters (state) {

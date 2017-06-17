@@ -1,16 +1,26 @@
-export function setEclipseServerAddress ({ commit }, newAddress) {
-  commit('setEclipseServerAddress', newAddress)
+import _ from 'lodash'
+
+export function setEpsilonServerAddress ({ commit }, newAddress) {
+  commit('setEpsilonServerAddress', newAddress)
 }
 
 export function addGetter ({ commit }, newGetter) {
-  if (!newGetter.method) {
-    throw new Error('Must provide a method on getters!')
-  }
-  let getter = {
-    object: '',
-    ...newGetter
-  }
-  // Build an ID based on a together-unique pair.
-  getter.id = `${getter.object}-${getter.method}`
-  commit('addGetter', getter)
+  return new Promise((resolve) => {
+    if (!newGetter.method) {
+      throw new Error('Must provide a method on getters!')
+    }
+    newGetter.id = _.uniqueId(Date.now())
+    commit('addGetter', newGetter)
+    return resolve(newGetter.id)
+  })
+}
+
+export function setGetterValues ({ commit }, idValuePairs) {
+  return Promise.all(_.map(idValuePairs, (value, id) => {
+    commit('setGetterValue', { id, value })
+  }))
+}
+
+export function resetState ({ commit }) {
+  commit('resetState')
 }

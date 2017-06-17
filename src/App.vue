@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <h1>GM Console</h1>
+    <a @click="$store.dispatch('resetState')">RESET</a>
     <server-connection />
     <div v-if="serverIsLive">
       <getters />

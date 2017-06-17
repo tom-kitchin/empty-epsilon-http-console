@@ -19,9 +19,10 @@ export default {
       if (this.name && this.method) {
         this.$store.dispatch('addGetter', {
           name: this.name, method: this.method
-        })
-        this.name = ''
-        this.method = ''
+        }).then(() => {
+          this.name = ''
+          this.method = ''
+        }).catch(console.log)
       }
     }
   }

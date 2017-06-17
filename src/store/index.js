@@ -11,7 +11,7 @@ const debug = process.env.NODE_ENV !== 'production'
 
 const state = {
   getters: {},
-  eclipseServerAddress: ''
+  epsilonServerAddress: ''
 }
 
 export default new Vuex.Store({
@@ -22,7 +22,7 @@ export default new Vuex.Store({
   strict: debug,
   plugins: [
     createPersistedState({
-      key: 'empty-eclipse-http-console'
+      key: 'empty-epsilon-http-console'
     })
   ]
 })

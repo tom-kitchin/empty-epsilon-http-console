@@ -1,5 +1,5 @@
-export function setEclipseServerAddress (state, newAddress) {
-  state.eclipseServerAddress = newAddress
+export function setEpsilonServerAddress (state, newAddress) {
+  state.epsilonServerAddress = newAddress
 }
 
 export function addGetter (state, newGetter) {
@@ -7,4 +7,8 @@ export function addGetter (state, newGetter) {
     ...state.getters,
     [newGetter.id]: newGetter
   }
+}
+
+export function resetState (state) {
+  state.getters = {}
 }
