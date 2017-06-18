@@ -17,11 +17,13 @@ export function addAttribute ({ commit }, newAttribute) {
 
 export function setAttributeValues ({ commit }, idValuePairs) {
   return Promise.all(_.map(idValuePairs, (value, id) => {
+    if (id === undefined) { return }
     commit('setAttributeValue', { id, value })
   }))
 }
 
 export function setAttributeValue ({ commit }, { id, value }) {
+  if (id === undefined) { return }
   commit('setAttributeValue', { id, value })
 }
 

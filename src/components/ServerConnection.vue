@@ -14,7 +14,7 @@
 
 <script>
 import _ from 'lodash'
-import { batchGetAttributes } from '@/services/epsilon-server'
+import { batchGetAttributes } from 'epsilon-server'
 
 export default {
   data () {
@@ -46,7 +46,6 @@ export default {
       if (!this.serverAddress) { return }
       if (_.isEmpty(this.attributes)) { return }
       this.serverCheckPromise = batchGetAttributes(this.serverAddress, this.attributes).then((results) => {
-        console.log(['server check results', results])
         this.$store.dispatch('setAttributeValues', results)
       }).then(() => {
         setTimeout(this.startCheckingServer, 500)

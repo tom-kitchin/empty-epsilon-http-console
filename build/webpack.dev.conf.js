@@ -34,6 +34,14 @@ module.exports = merge(baseWebpackConfig, {
   performance: {
     hints: false
   },
+  resolve: {
+    extensions: ['.js', '.vue', '.json'],
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js',
+      '@': resolve('src'),
+      'epsilon-server$': resolve('src/services/test-server') // Alias the server to a test service in dev mode
+    }
+  },
   plugins: [
     new webpack.DefinePlugin({
       'process.env': config.dev.env
