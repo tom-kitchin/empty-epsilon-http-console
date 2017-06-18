@@ -9,7 +9,7 @@ export function addGetter ({ commit }, newGetter) {
     if (!newGetter.method) {
       throw new Error('Must provide a method on getters!')
     }
-    newGetter.id = _.uniqueId(Date.now())
+    newGetter.id = _.uniqueId(`v${Date.now()}`)
     commit('addGetter', newGetter)
     return resolve(newGetter.id)
   })
