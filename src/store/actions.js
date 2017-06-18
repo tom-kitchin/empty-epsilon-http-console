@@ -21,6 +21,10 @@ export function setGetterValues ({ commit }, idValuePairs) {
   }))
 }
 
+export function setGetterValue ({ commit }, { id, value }) {
+  commit('setGetterValue', { id, value })
+}
+
 export function resetState ({ commit }) {
   commit('resetState')
 }

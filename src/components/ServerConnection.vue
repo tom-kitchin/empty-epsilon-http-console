@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { epsilonGet } from '@/services/epsilon-server'
+import { batchGetAttributes } from '@/services/epsilon-server'
 
 export default {
   data () {
@@ -43,7 +43,7 @@ export default {
     },
     startCheckingServer () {
       if (!this.serverAddress) { return }
-      this.serverCheckPromise = epsilonGet(this.serverAddress, this.getters).then((results) => {
+      this.serverCheckPromise = batchGetAttributes(this.serverAddress, this.getters).then((results) => {
         console.log(['server check results', results])
         this.$store.dispatch('setGetterValues', results)
       }).then(() => {

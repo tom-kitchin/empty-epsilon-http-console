@@ -9,6 +9,16 @@ export function addGetter (state, newGetter) {
   }
 }
 
+export function setGetterValue (state, { id, value }) {
+  state.getters = {
+    ...state.getters,
+    [id]: {
+      ...state.getters[id],
+      value: value
+    }
+  }
+}
+
 export function resetState (state) {
   state.getters = {}
 }
