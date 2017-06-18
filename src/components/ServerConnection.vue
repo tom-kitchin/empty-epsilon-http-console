@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import _ from 'lodash'
 import { batchGetAttributes } from '@/services/epsilon-server'
 
 export default {
@@ -32,8 +33,8 @@ export default {
         this.tempServerAddress = value
       }
     },
-    getters () {
-      return this.$store.getters.getters
+    attributes () {
+      return this.$store.getters.attributes
     }
   },
   methods: {
@@ -43,9 +44,10 @@ export default {
     },
     startCheckingServer () {
       if (!this.serverAddress) { return }
-      this.serverCheckPromise = batchGetAttributes(this.serverAddress, this.getters).then((results) => {
+      if (_.isEmpty(this.attributes)) { return }
+      this.serverCheckPromise = batchGetAttributes(this.serverAddress, this.attributes).then((results) => {
         console.log(['server check results', results])
-        this.$store.dispatch('setGetterValues', results)
+        this.$store.dispatch('setAttributeValues', results)
       }).then(() => {
         setTimeout(this.startCheckingServer, 500)
       }).catch((error) => {

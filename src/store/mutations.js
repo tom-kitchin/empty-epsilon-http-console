@@ -2,23 +2,23 @@ export function setEpsilonServerAddress (state, newAddress) {
   state.epsilonServerAddress = newAddress
 }
 
-export function addGetter (state, newGetter) {
-  state.getters = {
-    ...state.getters,
-    [newGetter.id]: newGetter
+export function addAttribute (state, newAttribute) {
+  state.attributes = {
+    ...state.attributes,
+    [newAttribute.id]: newAttribute
   }
 }
 
-export function setGetterValue (state, { id, value }) {
-  state.getters = {
-    ...state.getters,
+export function setAttributeValue (state, { id, value }) {
+  state.attributes = {
+    ...state.attributes,
     [id]: {
-      ...state.getters[id],
+      ...state.attributes[id],
       value: value
     }
   }
 }
 
 export function resetState (state) {
-  state.getters = {}
+  state.attributes = {}
 }

@@ -4,14 +4,14 @@
     <a @click="$store.dispatch('resetState')">RESET</a>
     <server-connection />
     <div v-if="serverIsLive">
-      <getters />
+      <attributes />
     </div>
   </div>
 </template>
 
 <script>
 import ServerConnection from './components/ServerConnection'
-import Getters from './components/Getters'
+import Attributes from './components/Attributes'
 
 export default {
   name: 'app',
@@ -29,7 +29,7 @@ export default {
   },
   components: {
     ServerConnection,
-    Getters
+    Attributes
   }
 }
 </script>

@@ -2,6 +2,6 @@ export function epsilonServerAddress (state) {
   return state.epsilonServerAddress
 }
 
-export function getters (state) {
-  return state.getters
+export function attributes (state) {
+  return state.attributes
 }

@@ -2,7 +2,7 @@
   <div>
     <input v-model="name" placeholder="Name the status!" />
     <input v-model="method" placeholder="What method should be called?" />
-    <a class="button" @click="addGetter">+</a>
+    <a class="button" @click="addAttribute">+</a>
   </div>
 </template>
 
@@ -15,9 +15,9 @@ export default {
     }
   },
   methods: {
-    addGetter () {
+    addAttribute () {
       if (this.name && this.method) {
-        this.$store.dispatch('addGetter', {
+        this.$store.dispatch('addAttribute', {
           name: this.name, method: this.method
         }).then(() => {
           this.name = ''

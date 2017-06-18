@@ -4,25 +4,25 @@ export function setEpsilonServerAddress ({ commit }, newAddress) {
   commit('setEpsilonServerAddress', newAddress)
 }
 
-export function addGetter ({ commit }, newGetter) {
+export function addAttribute ({ commit }, newAttribute) {
   return new Promise((resolve) => {
-    if (!newGetter.method) {
-      throw new Error('Must provide a method on getters!')
+    if (!newAttribute.method) {
+      throw new Error('Must provide a method on attributes!')
     }
-    newGetter.id = _.uniqueId(`v${Date.now()}`)
-    commit('addGetter', newGetter)
-    return resolve(newGetter.id)
+    newAttribute.id = _.uniqueId(`v${Date.now()}`)
+    commit('addAttribute', newAttribute)
+    return resolve(newAttribute.id)
   })
 }
 
-export function setGetterValues ({ commit }, idValuePairs) {
+export function setAttributeValues ({ commit }, idValuePairs) {
   return Promise.all(_.map(idValuePairs, (value, id) => {
-    commit('setGetterValue', { id, value })
+    commit('setAttributeValue', { id, value })
   }))
 }
 
-export function setGetterValue ({ commit }, { id, value }) {
-  commit('setGetterValue', { id, value })
+export function setAttributeValue ({ commit }, { id, value }) {
+  commit('setAttributeValue', { id, value })
 }
 
 export function resetState ({ commit }) {

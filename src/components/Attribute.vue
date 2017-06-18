@@ -7,17 +7,17 @@
 <script>
 export default {
   props: {
-    getter: {
+    attribute: {
       required: true,
       type: Object
     }
   },
   computed: {
     name () {
-      return this.getter.name
+      return this.attribute.name
     },
     value () {
-      return this.getter.value
+      return this.attribute.value
     }
   }
 }
