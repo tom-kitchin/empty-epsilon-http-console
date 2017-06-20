@@ -4,14 +4,14 @@
     <a @click="$store.dispatch('resetState')">RESET</a>
     <server-connection />
     <div v-if="serverIsLive">
-      <attributes />
+      <game-object id="test" />
     </div>
   </div>
 </template>
 
 <script>
-import ServerConnection from './components/ServerConnection'
-import Attributes from './components/Attributes'
+import ServerConnection from '@/components/ServerConnection'
+import GameObject from '@/components/gameobjects/GameObject'
 
 export default {
   name: 'app',
@@ -29,7 +29,7 @@ export default {
   },
   components: {
     ServerConnection,
-    Attributes
+    GameObject
   }
 }
 </script>
@@ -39,7 +39,6 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
 }

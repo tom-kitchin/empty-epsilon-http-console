@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h2>Attributes</h2>
     <attribute
       v-for="attribute in attributes"
       key="attribute.id"
@@ -11,8 +10,8 @@
 </template>
 
 <script>
-import Attribute from '@/components/Attribute'
-import AddAttribute from '@/components/AddAttribute'
+import Attribute from '@/components/attributes/Attribute'
+import AddAttribute from '@/components/attributes/AddAttribute'
 
 export default {
   computed: {
@@ -26,3 +25,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.attribute {
+  display: inline-block;
+}
+</style>
