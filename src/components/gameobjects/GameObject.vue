@@ -1,5 +1,8 @@
 <template>
-  <div class="game-object">
+  <div class="game-object masonry">
+    <div class="brick">
+      <h3>Game Object</h3>
+    </div>
     <attributes />
   </div>
 </template>
@@ -28,7 +31,9 @@ export default {
 
 <style>
 .game-object {
-  border: 2px solid red;
+  border: 1px solid grey;
   border-radius: 5px;
+  box-shadow: 2px 2px 2px 0px grey;
+  padding: 5px;
 }
 </style>

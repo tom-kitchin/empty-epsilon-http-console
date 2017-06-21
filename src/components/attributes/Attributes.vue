@@ -4,8 +4,9 @@
       v-for="attribute in attributes"
       key="attribute.id"
       :attribute="attribute"
+      class="brick attribute"
     />
-    <add-attribute />
+    <add-attribute class="brick" />
   </div>
 </template>
 
@@ -28,6 +29,9 @@ export default {
 
 <style>
 .attribute {
-  display: inline-block;
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 2px 2px 2px 0px grey;
 }
 </style>

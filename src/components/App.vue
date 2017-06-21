@@ -34,6 +34,7 @@ export default {
 }
 </script>
 
+<style lang="sass" src="@/assets/sass/masonry.sass"></style>
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
