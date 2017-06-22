@@ -28,5 +28,6 @@ export function setAttributeValue ({ commit }, { id, value }) {
 }
 
 export function resetState ({ commit }) {
-  commit('resetState')
+  commit('resetAttributes')
+  commit('resetGameObjects')
 }

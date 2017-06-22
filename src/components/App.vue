@@ -4,14 +4,14 @@
     <a @click="$store.dispatch('resetState')">RESET</a>
     <server-connection />
     <div v-if="serverIsLive">
-      <game-object id="test" />
+      <game-objects-store-wrapper />
     </div>
   </div>
 </template>
 
 <script>
 import ServerConnection from '@/components/ServerConnection'
-import GameObject from '@/components/gameobjects/GameObject'
+import GameObjectsStoreWrapper from '@/components/gameobjects/GameObjectsStoreWrapper'
 
 export default {
   name: 'app',
@@ -29,7 +29,7 @@ export default {
   },
   components: {
     ServerConnection,
-    GameObject
+    GameObjectsStoreWrapper
   }
 }
 </script>

@@ -17,12 +17,9 @@ export default {
   methods: {
     addAttribute () {
       if (this.name && this.method) {
-        this.$store.dispatch('addAttribute', {
-          name: this.name, method: this.method
-        }).then(() => {
-          this.name = ''
-          this.method = ''
-        }).catch(console.log)
+        this.$emit('addAttribute', { name: this.name, method: this.method })
+        this.name = ''
+        this.method = ''
       }
     }
   }

@@ -1,30 +1,25 @@
 <template>
   <div class="game-object masonry">
     <div class="brick">
-      <h3>Game Object</h3>
+      <h3>{{ gameObject.name }}</h3>
     </div>
-    <attributes />
+    <attributes-store-wrapper :forGameObject="gameObject.id" />
   </div>
 </template>
 
 <script>
-import Attributes from '@/components/attributes/Attributes'
+import AttributesStoreWrapper from '@/components/attributes/AttributesStoreWrapper'
 
 export default {
   name: 'game-object',
   props: {
-    id: {
+    gameObject: {
       required: true,
-      type: String
-    }
-  },
-  computed: {
-    attributes () {
-      return this.$store.getters.attributesForGameObject(this.id)
+      type: Object
     }
   },
   components: {
-    Attributes
+    AttributesStoreWrapper
   }
 }
 </script>

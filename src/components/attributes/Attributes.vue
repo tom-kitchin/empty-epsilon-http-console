@@ -6,7 +6,10 @@
       :attribute="attribute"
       class="brick attribute"
     />
-    <add-attribute class="brick" />
+    <add-attribute
+      class="brick"
+      @addAttribute="addAttribute"
+    />
   </div>
 </template>
 
@@ -15,9 +18,15 @@ import Attribute from '@/components/attributes/Attribute'
 import AddAttribute from '@/components/attributes/AddAttribute'
 
 export default {
-  computed: {
-    attributes () {
-      return this.$store.getters.attributes
+  props: {
+    attributes: {
+      required: false,
+      type: Array
+    }
+  },
+  methods: {
+    addAttribute (attribute) {
+      this.$emit('addAttribute', attribute)
     }
   },
   components: {
