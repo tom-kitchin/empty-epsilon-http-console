@@ -27,7 +27,6 @@ export default {
   },
   methods: {
     addAttribute (attribute) {
-      console.log('hello?')
       if (this.forGameObject) {
         this.$store.dispatch('addAttribute', {
           ...attribute,
