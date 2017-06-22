@@ -1,5 +1,5 @@
 <template>
-  <div class="game-object masonry">
+  <div class="masonry">
     <div class="brick">
       <h3>{{ gameObject.name }}</h3>
     </div>
@@ -23,12 +23,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.game-object {
-  border: 1px solid grey;
-  border-radius: 5px;
-  box-shadow: 2px 2px 2px 0px grey;
-  padding: 5px;
-}
-</style>

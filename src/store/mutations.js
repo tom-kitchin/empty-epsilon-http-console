@@ -19,6 +19,13 @@ export function setAttributeValue (state, { id, value }) {
   }
 }
 
+export function addGameObject (state, newGameObject) {
+  state.gameObjects = {
+    ...state.gameObjects,
+    [newGameObject.id]: newGameObject
+  }
+}
+
 export function resetAttributes (state) {
   state.attributes = {}
 }

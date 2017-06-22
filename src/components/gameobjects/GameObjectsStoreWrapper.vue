@@ -1,5 +1,8 @@
 <template>
-  <game-objects :gameObjects="gameObjects" />
+  <game-objects
+    :gameObjects="gameObjects"
+    @addGameObject="addGameObject"
+  />
 </template>
 
 <script>
@@ -16,6 +19,11 @@ export default {
         },
         ...this.$store.getters.gameObjects
       }
+    }
+  },
+  methods: {
+    addGameObject (gameObject) {
+      this.$store.dispatch('addGameObject', gameObject)
     }
   },
   components: {

@@ -9,7 +9,7 @@ export function addAttribute ({ commit }, newAttribute) {
     if (!newAttribute.method) {
       throw new Error('Must provide a method on attributes!')
     }
-    newAttribute.id = _.uniqueId(`v${Date.now()}`)
+    newAttribute.id = _.uniqueId(`a${Date.now()}`)
     commit('addAttribute', newAttribute)
     return resolve(newAttribute.id)
   })
@@ -25,6 +25,17 @@ export function setAttributeValues ({ commit }, idValuePairs) {
 export function setAttributeValue ({ commit }, { id, value }) {
   if (id === undefined) { return }
   commit('setAttributeValue', { id, value })
+}
+
+export function addGameObject ({ commit }, newGameObject) {
+  return new Promise((resolve, reject) => {
+    if (!newGameObject.method) {
+      return reject('Must provide a method on game objects!')
+    }
+    newGameObject.id = _.uniqueId(`go${Date.now()}`)
+    commit('addGameObject', newGameObject)
+    return resolve(newGameObject.id)
+  })
 }
 
 export function resetState ({ commit }) {
