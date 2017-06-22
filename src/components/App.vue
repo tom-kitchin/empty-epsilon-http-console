@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h1>GM Console</h1>
-    <a @click="$store.dispatch('resetState')">RESET</a>
+    <ui-button @click="$store.dispatch('resetState')"><ui-icon>delete</ui-icon>RESET</ui-button>
     <server-connection />
     <div v-if="serverIsLive">
       <game-objects-store-wrapper />
@@ -34,6 +34,9 @@ export default {
 }
 </script>
 
+<style src="normalize-css/normalize.css"></style>
+<style src="material-design-icons-iconfont/dist/material-design-icons.css"></style>
+<style src="keen-ui/dist/keen-ui.min.css"></style>
 <style lang="sass" src="@/assets/sass/masonry.sass"></style>
 <style>
 #app {

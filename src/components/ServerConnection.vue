@@ -4,11 +4,19 @@
       placeholder="localhost:8080"
       v-model="serverAddress"
     />
-    <a class="button" @click="saveServerAddress">+</a>
+    <ui-button
+      size="small"
+      type="secondary"
+      @click="saveServerAddress"
+    >Save</ui-button>
   </div>
   <div v-else>
     <p>{{ serverAddress }}</p>
-    <a class="button" @click="editing = true">+</a>
+    <ui-button
+      size="small"
+      type="secondary"
+      @click="editing = true"
+    >Edit</ui-button>
   </div>
 </template>
 
