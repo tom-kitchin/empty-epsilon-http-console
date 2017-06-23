@@ -1,16 +1,32 @@
 <template>
   <div>
-    <attribute
+    <div
       v-for="attribute in attributes"
       key="attribute.id"
-      class="brick attribute"
-      :attribute="attribute"
-      @updateAttribute="updateAttribute"
-    />
-    <add-attribute
-      class="brick attribute"
-      @saveAttribute="addAttribute"
-    />
+      class="brick"
+    >
+      <attribute
+        class="attribute"
+        :attribute="attribute"
+        @updateAttribute="updateAttribute"
+      />
+    </div>
+    <div class="brick">
+      <add-attribute
+        v-if="adding"
+        class="attribute"
+        @saveAttribute="addAttribute"
+        @cancel="adding = false"
+      />
+      <ui-button
+        v-else
+        type="primary"
+        color="primary"
+        size="small"
+        icon="add"
+        @click="adding = true"
+      >new attribute</ui-button>
+    </div>
   </div>
 </template>
 
@@ -25,9 +41,15 @@ export default {
       type: Array
     }
   },
+  data () {
+    return {
+      adding: false
+    }
+  },
   methods: {
     addAttribute (attribute) {
       this.$emit('addAttribute', attribute)
+      this.adding = false
     },
     updateAttribute (attribute) {
       this.$emit('updateAttribute', attribute)
@@ -47,5 +69,6 @@ export default {
   padding: 5px;
   box-shadow: 2px 2px 2px 0px grey;
   position: relative;
+  margin-bottom: 2px;
 }
 </style>

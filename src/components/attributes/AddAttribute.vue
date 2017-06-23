@@ -1,8 +1,32 @@
 <template>
   <div>
-    <input v-model="name" placeholder="Name the status!" />
-    <input v-model="method" placeholder="What method should be called?" />
-    <a class="button" @click="saveAttribute">+</a>
+    <ui-textbox
+      v-model="name"
+      placeholder="Attribute name"
+      :required="true"
+      :autofocus="true"
+    />
+    <ui-textbox
+      v-model="method"
+      placeholder="Attribute get method"
+      :required="true"
+      :autofocus="true"
+    />
+    <div class="attribute-buttons">
+      <ui-button
+        type="primary"
+        color="primary"
+        size="small"
+        :disabled="!isValidInputs"
+        @click="saveAttribute"
+      >Save</ui-button>
+      <ui-button
+        type="secondary"
+        color="primary"
+        size="small"
+        @click="$emit('cancel')"
+      >Cancel</ui-button>
+    </div>
   </div>
 </template>
 
@@ -26,9 +50,14 @@ export default {
       method: this.initialMethod
     }
   },
+  computed: {
+    isValidInputs () {
+      return (this.name && this.method)
+    }
+  },
   methods: {
     saveAttribute () {
-      if (this.name && this.method) {
+      if (this.isValidInputs) {
         this.$emit('saveAttribute', {
           name: this.name,
           method: this.method
@@ -42,7 +71,7 @@ export default {
 </script>
 
 <style>
-.button {
-  cursor: pointer;
+.attribute-buttons {
+  display: inline-block;
 }
 </style>

@@ -1,7 +1,13 @@
 <template>
   <div class="masonry">
     <div class="brick">
-      <h3>{{ gameObject.name }}</h3>
+      <p ref="title" class="gameobject-title">{{ gameObject.name }}</p>
+      <ui-tooltip
+        trigger="title"
+        position="bottom right"
+      >
+        Calling '{{ gameObject.method }}' on the server.
+      </ui-tooltip>
     </div>
     <attributes-store-wrapper :forGameObject="gameObject.id" />
   </div>
@@ -23,3 +29,12 @@ export default {
   }
 }
 </script>
+
+<style>
+.gameobject-title {
+  font-size: large;
+  margin: 0.5em;
+  border-bottom-style: dashed;
+  border-bottom-width: thin;
+}
+</style>
