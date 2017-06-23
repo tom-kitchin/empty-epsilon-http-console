@@ -2,6 +2,7 @@
   <game-objects
     :gameObjects="gameObjects"
     @addGameObject="addGameObject"
+    @deleteGameObject="deleteGameObject"
   />
 </template>
 
@@ -24,6 +25,9 @@ export default {
   methods: {
     addGameObject (gameObject) {
       this.$store.dispatch('addGameObject', gameObject)
+    },
+    deleteGameObject (gameObjectId) {
+      this.$store.dispatch('deleteGameObject', gameObjectId)
     }
   },
   components: {

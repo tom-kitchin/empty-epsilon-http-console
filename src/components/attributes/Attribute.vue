@@ -15,14 +15,28 @@
     </ui-tooltip>
     <p ref="attributeName" class="attribute-name">{{ name }}</p>
     <p class="attribute-value">{{ value }}</p>
-    <ui-icon-button
-      class="attribute-edit-button"
-      type="secondary"
-      size="small"
-      tooltip="Edit attribute"
-      icon="edit"
-      @click="editing = true"
-    />
+    <div class="attribute-buttons">
+      <ui-icon-button
+        type="secondary"
+        size="small"
+        tooltip="Edit attribute"
+        icon="edit"
+        :color="editColour"
+        @click="editing = true"
+        @mouseover.native="onHoverEdit = true"
+        @mouseleave.native="onHoverEdit = false"
+      />
+      <ui-icon-button
+        type="secondary"
+        size="small"
+        tooltip="Delete attribute"
+        icon="delete"
+        :color="deleteColour"
+        @click="deleteAttribute"
+        @mouseover.native="onHoverDelete = true"
+        @mouseleave.native="onHoverDelete = false"
+      />
+    </div>
   </div>
 </template>
 
@@ -38,7 +52,9 @@ export default {
   },
   data () {
     return {
-      editing: false
+      editing: false,
+      onHoverEdit: false,
+      onHoverDelete: false
     }
   },
   computed: {
@@ -47,6 +63,14 @@ export default {
     },
     value () {
       return this.attribute.value
+    },
+    editColour () {
+      if (this.onHoverEdit) { return 'primary' }
+      return ''
+    },
+    deleteColour () {
+      if (this.onHoverDelete) { return 'red' }
+      return ''
     }
   },
   methods: {
@@ -56,6 +80,9 @@ export default {
         ...attribute
       })
       this.editing = false
+    },
+    deleteAttribute () {
+      this.$emit('deleteAttribute', this.attribute.id)
     }
   },
   components: {
@@ -65,7 +92,7 @@ export default {
 </script>
 
 <style>
-.attribute-edit-button {
+.attribute-buttons {
   position: absolute;
   right: 0;
   top: 0;

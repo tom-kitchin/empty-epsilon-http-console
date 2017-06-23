@@ -3,13 +3,25 @@
     <game-object
       v-for="gameObject in gameObjects"
       key="gameObject.id"
+      class="game-object"
       :gameObject="gameObject"
-      class="game-object"
+      @deleteGameObject="deleteGameObject"
     />
-    <add-game-object
-      @addGameObject="addGameObject"
-      class="game-object"
-    />
+    <div>
+      <add-game-object
+        v-if="adding"
+        class="game-object"
+        @saveGameObject="addGameObject"
+        @cancel="adding = false"
+      />
+      <ui-button
+        v-else
+        type="primary"
+        color="primary"
+        icon="add"
+        @click="adding = true"
+      >new object</ui-button>
+    </div>
   </div>
 </template>
 
@@ -25,9 +37,18 @@ export default {
       type: Object
     }
   },
+  data () {
+    return {
+      adding: false
+    }
+  },
   methods: {
     addGameObject (gameObject) {
       this.$emit('addGameObject', gameObject)
+      this.adding = false
+    },
+    deleteGameObject (gameObjectId) {
+      this.$emit('deleteGameObject', gameObjectId)
     }
   },
   components: {

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="masonry attributes-wrapper">
     <div
       v-for="attribute in attributes"
       key="attribute.id"
@@ -9,23 +9,16 @@
         class="attribute"
         :attribute="attribute"
         @updateAttribute="updateAttribute"
+        @deleteAttribute="deleteAttribute"
       />
     </div>
-    <div class="brick">
+    <div v-if="adding" class="brick">
       <add-attribute
         v-if="adding"
         class="attribute"
         @saveAttribute="addAttribute"
-        @cancel="adding = false"
+        @cancel="$emit('stopAdding')"
       />
-      <ui-button
-        v-else
-        type="primary"
-        color="primary"
-        size="small"
-        icon="add"
-        @click="adding = true"
-      >new attribute</ui-button>
     </div>
   </div>
 </template>
@@ -39,20 +32,22 @@ export default {
     attributes: {
       required: false,
       type: Array
-    }
-  },
-  data () {
-    return {
-      adding: false
+    },
+    adding: {
+      required: false,
+      type: Boolean,
+      default: false
     }
   },
   methods: {
     addAttribute (attribute) {
       this.$emit('addAttribute', attribute)
-      this.adding = false
     },
     updateAttribute (attribute) {
       this.$emit('updateAttribute', attribute)
+    },
+    deleteAttribute (attributeId) {
+      this.$emit('deleteAttribute', attributeId)
     }
   },
   components: {

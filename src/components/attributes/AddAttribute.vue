@@ -12,7 +12,7 @@
       :required="true"
       :autofocus="true"
     />
-    <div class="attribute-buttons">
+    <div class="add-attribute-buttons">
       <ui-button
         type="primary"
         color="primary"
@@ -71,7 +71,7 @@ export default {
 </script>
 
 <style>
-.attribute-buttons {
+.add-attribute-buttons {
   display: inline-block;
 }
 </style>

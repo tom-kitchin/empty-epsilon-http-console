@@ -22,6 +22,10 @@ export function updateAttribute ({ commit }, newAttribute) {
   commit('setAttribute', newAttribute)
 }
 
+export function deleteAttribute ({ commit }, attributeId) {
+  commit('deleteAttribute', attributeId)
+}
+
 export function setAttributeValues ({ commit }, idValuePairs) {
   return Promise.all(_.map(idValuePairs, (value, id) => {
     if (id === undefined) { return }
@@ -43,6 +47,10 @@ export function addGameObject ({ commit }, newGameObject) {
     commit('addGameObject', newGameObject)
     return resolve(newGameObject.id)
   })
+}
+
+export function deleteGameObject ({ commit }, gameObjectId) {
+  commit('deleteGameObject', gameObjectId)
 }
 
 export function resetState ({ commit }) {
