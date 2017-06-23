@@ -2,7 +2,7 @@ export function setEpsilonServerAddress (state, newAddress) {
   state.epsilonServerAddress = newAddress
 }
 
-export function addAttribute (state, newAttribute) {
+export function setAttribute (state, newAttribute) {
   state.attributes = {
     ...state.attributes,
     [newAttribute.id]: newAttribute

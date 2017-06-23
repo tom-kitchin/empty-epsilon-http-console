@@ -3,12 +3,13 @@
     <attribute
       v-for="attribute in attributes"
       key="attribute.id"
-      :attribute="attribute"
       class="brick attribute"
+      :attribute="attribute"
+      @updateAttribute="updateAttribute"
     />
     <add-attribute
-      class="brick"
-      @addAttribute="addAttribute"
+      class="brick attribute"
+      @saveAttribute="addAttribute"
     />
   </div>
 </template>
@@ -27,6 +28,9 @@ export default {
   methods: {
     addAttribute (attribute) {
       this.$emit('addAttribute', attribute)
+    },
+    updateAttribute (attribute) {
+      this.$emit('updateAttribute', attribute)
     }
   },
   components: {
@@ -42,5 +46,6 @@ export default {
   border-radius: 5px;
   padding: 5px;
   box-shadow: 2px 2px 2px 0px grey;
+  position: relative;
 }
 </style>

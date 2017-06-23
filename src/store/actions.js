@@ -10,9 +10,16 @@ export function addAttribute ({ commit }, newAttribute) {
       throw new Error('Must provide a method on attributes!')
     }
     newAttribute.id = _.uniqueId(`a${Date.now()}`)
-    commit('addAttribute', newAttribute)
+    commit('setAttribute', newAttribute)
     return resolve(newAttribute.id)
   })
+}
+
+export function updateAttribute ({ commit }, newAttribute) {
+  if (!newAttribute.id) {
+    throw new Error('Cannot update an attribute with no id!')
+  }
+  commit('setAttribute', newAttribute)
 }
 
 export function setAttributeValues ({ commit }, idValuePairs) {

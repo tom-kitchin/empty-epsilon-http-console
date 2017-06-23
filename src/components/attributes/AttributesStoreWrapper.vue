@@ -2,6 +2,7 @@
   <attributes
     :attributes="attributes"
     @addAttribute="addAttribute"
+    @updateAttribute="updateAttribute"
   />
 </template>
 
@@ -34,6 +35,16 @@ export default {
         })
       } else {
         this.$store.dispatch('addAttribute', attribute)
+      }
+    },
+    updateAttribute (attribute) {
+      if (this.forGameObject) {
+        this.$store.dispatch('updateAttribute', {
+          ...attribute,
+          gameObject: this.forGameObject
+        })
+      } else {
+        this.$store.dispatch('updateAttribute', attribute)
       }
     }
   },
