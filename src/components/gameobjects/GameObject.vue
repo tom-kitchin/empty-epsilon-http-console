@@ -9,26 +9,20 @@
     </div>
     <attributes-store-wrapper
       :forGameObject="gameObject.id"
-      :adding="addingAttribute"
-      @stopAdding="addingAttribute = false"
     />
-    <div class="gameobject-controls">
-      <ui-button
-        v-if="!addingAttribute"
-        type="primary"
-        color="primary"
-        size="small"
-        icon="add"
-        @click="addingAttribute = true"
-      >new attribute</ui-button>
-      <ui-button
+    <div class="gameobject-buttons">
+      <ui-icon-button
         v-if="!isDefaultGameObject"
-        type="primary"
-        color="red"
-        size="small"
+        type="secondary"
+        size="medium"
+        tooltip="Delete attribute"
+        tooltipPosition="bottom right"
         icon="delete"
+        :color="deleteColour"
         @click="deleteGameObject"
-      >delete object</ui-button>
+        @mouseover.native="onHoverDelete = true"
+        @mouseleave.native="onHoverDelete = false"
+      />
     </div>
   </div>
 </template>
@@ -46,7 +40,7 @@ export default {
   },
   data () {
     return {
-      addingAttribute: false
+      onHoverDelete: false
     }
   },
   computed: {
@@ -59,6 +53,10 @@ export default {
       } else {
         return `Calling '${this.gameObject.method}' on the server`
       }
+    },
+    deleteColour () {
+      if (this.onHoverDelete) { return 'red' }
+      return ''
     }
   },
   methods: {
@@ -84,10 +82,9 @@ export default {
   border-bottom-style: dashed;
   border-bottom-width: thin;
 }
-.gameobject-controls {
+.gameobject-buttons {
   position: absolute;
   right: 0;
-  bottom: 0;
-  margin: 5px;
+  top: 0;
 }
 </style>

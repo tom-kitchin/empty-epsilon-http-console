@@ -93,6 +93,7 @@ export default {
 
 <style>
 .attribute-buttons {
+  width: 2em;
   position: absolute;
   right: 0;
   top: 0;

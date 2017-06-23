@@ -12,13 +12,23 @@
         @deleteAttribute="deleteAttribute"
       />
     </div>
-    <div v-if="adding" class="brick">
+    <div class="brick">
       <add-attribute
         v-if="adding"
         class="attribute"
         @saveAttribute="addAttribute"
-        @cancel="$emit('stopAdding')"
+        @cancel="adding = false"
       />
+      <div v-if="!adding" class="attribute-faded">
+        <ui-icon-button
+          type="primary"
+          color="primary"
+          size="large"
+          icon="add"
+          tooltip="Add attribute"
+          @click="adding = true"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -32,11 +42,11 @@ export default {
     attributes: {
       required: false,
       type: Array
-    },
-    adding: {
-      required: false,
-      type: Boolean,
-      default: false
+    }
+  },
+  data () {
+    return {
+      adding: false
     }
   },
   methods: {
@@ -65,5 +75,14 @@ export default {
   box-shadow: 2px 2px 2px 0px grey;
   position: relative;
   margin-bottom: 2px;
+}
+.attribute-faded {
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 2px 2px 2px 0px lightgrey;
+  position: relative;
+  margin-bottom: 2px;
+  text-align: center;
 }
 </style>

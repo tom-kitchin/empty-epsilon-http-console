@@ -12,7 +12,7 @@
       :required="true"
       :autofocus="true"
     />
-    <div class="gameobject-buttons">
+    <div class="add-gameobject-buttons">
       <ui-button
         type="primary"
         color="primary"
@@ -71,7 +71,7 @@ export default {
 </script>
 
 <style>
-.gameobject-buttons {
+.add-gameobject-buttons {
   display: inline-block;
 }
 </style>

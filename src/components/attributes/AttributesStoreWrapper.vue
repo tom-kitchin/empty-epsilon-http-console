@@ -1,11 +1,9 @@
 <template>
   <attributes
     :attributes="attributes"
-    :adding="adding"
     @addAttribute="addAttribute"
     @updateAttribute="updateAttribute"
     @deleteAttribute="deleteAttribute"
-    @stopAdding="$emit('stopAdding')"
   />
 </template>
 
@@ -18,11 +16,6 @@ export default {
     forGameObject: {
       required: false,
       type: String
-    },
-    adding: {
-      required: false,
-      type: Boolean,
-      default: false
     }
   },
   computed: {

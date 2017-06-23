@@ -3,24 +3,27 @@
     <game-object
       v-for="gameObject in gameObjects"
       key="gameObject.id"
-      class="game-object"
+      class="gameobject"
       :gameObject="gameObject"
       @deleteGameObject="deleteGameObject"
     />
     <div>
       <add-game-object
         v-if="adding"
-        class="game-object"
+        class="gameobject"
         @saveGameObject="addGameObject"
         @cancel="adding = false"
       />
-      <ui-button
-        v-else
-        type="primary"
-        color="primary"
-        icon="add"
-        @click="adding = true"
-      >new object</ui-button>
+      <div v-else class="gameobject-faded">
+        <ui-icon-button
+          type="primary"
+          color="primary"
+          size="large"
+          icon="add"
+          tooltip="Add object"
+          @click="adding = true"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -59,11 +62,19 @@ export default {
 </script>
 
 <style>
-.game-object {
+.gameobject {
   border: 1px solid grey;
   border-radius: 5px;
   box-shadow: 2px 2px 2px 0px grey;
   padding: 5px;
   margin-bottom: 10px;
+}
+.gameobject-faded {
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 0px lightgrey;
+  padding: 5px;
+  margin-bottom: 10px;
+  text-align: center;
 }
 </style>
