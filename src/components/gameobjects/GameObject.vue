@@ -73,7 +73,6 @@ export default {
 <style>
 .gameobject-wrapper {
   position: relative;
-  padding-bottom: 2.5em;
 }
 .gameobject-title {
   display: inline-block;

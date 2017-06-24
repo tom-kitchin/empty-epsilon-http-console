@@ -1,5 +1,5 @@
 <template>
-  <div class="masonry attributes-wrapper">
+  <div class="masonry-attributes attributes-wrapper">
     <div
       v-for="attribute in attributes"
       key="attribute.id"

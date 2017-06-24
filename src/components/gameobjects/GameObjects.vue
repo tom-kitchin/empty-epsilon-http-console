@@ -1,13 +1,17 @@
 <template>
-  <div>
-    <game-object
+  <div class="masonry-objects">
+    <div
       v-for="gameObject in gameObjects"
       key="gameObject.id"
-      class="gameobject"
-      :gameObject="gameObject"
-      @deleteGameObject="deleteGameObject"
-    />
-    <div>
+      class="brick"
+    >
+      <game-object
+        class="gameobject brick"
+        :gameObject="gameObject"
+        @deleteGameObject="deleteGameObject"
+      />
+    </div>
+    <div class="brick">
       <add-game-object
         v-if="adding"
         class="gameobject"
