@@ -6,7 +6,7 @@
       class="brick"
     >
       <game-object
-        class="gameobject brick"
+        class="gameobject"
         :gameObject="gameObject"
         @deleteGameObject="deleteGameObject"
       />
