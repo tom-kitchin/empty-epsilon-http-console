@@ -10,7 +10,6 @@
       v-model="method"
       placeholder="Attribute get method"
       :required="true"
-      :autofocus="true"
     />
     <div class="add-attribute-buttons">
       <ui-button

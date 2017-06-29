@@ -10,7 +10,6 @@
       v-model="method"
       placeholder="Object get method"
       :required="true"
-      :autofocus="true"
     />
     <div class="add-gameobject-buttons">
       <ui-button
