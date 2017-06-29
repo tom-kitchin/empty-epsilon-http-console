@@ -51,20 +51,37 @@ export default {
       this.editing = false
     },
     startCheckingServer () {
-      if (!this.serverAddress) { return }
-      if (_.isEmpty(this.attributes)) { return }
+      if (this.isCheckingServer()) { return }
+      this.checkServer()
+    },
+    checkServer () {
+      if (!this.serverAddress || _.isEmpty(this.attributes)) {
+        this.serverCheckPromise = undefined
+        return
+      }
       this.serverCheckPromise = batchGetAttributes(this.serverAddress, this.attributes).then((results) => {
         this.$store.dispatch('setAttributeValues', results)
       }).then(() => {
-        setTimeout(this.startCheckingServer, 500)
+        setTimeout(this.checkServer, 500)
       }).catch((error) => {
         console.log(['Error in ServerConnection', error])
-        setTimeout(this.startCheckingServer, 10000)
+        setTimeout(this.checkServer, 10000)
       })
+    },
+    isCheckingServer () {
+      return (this.serverCheckPromise !== undefined)
     }
   },
   mounted () {
     this.startCheckingServer()
+  },
+  watch: {
+    attributes () {
+      this.startCheckingServer()
+    },
+    serverAddress () {
+      this.startCheckingServer()
+    }
   }
 }
 </script>
