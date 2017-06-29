@@ -16,6 +16,7 @@ export function deleteAttribute (state, attributeId) {
 }
 
 export function setAttributeValue (state, { id, value }) {
+  if (!_.has(state.attributes, id)) { return }
   state.attributes = {
     ...state.attributes,
     [id]: {
@@ -33,6 +34,9 @@ export function addGameObject (state, newGameObject) {
 }
 
 export function deleteGameObject (state, gameObjectId) {
+  state.attributes = _.omitBy(state.attributes, (attribute) => {
+    return attribute.gameObject === gameObjectId
+  })
   state.gameObjects = _.omit(state.gameObjects, gameObjectId)
 }
 
